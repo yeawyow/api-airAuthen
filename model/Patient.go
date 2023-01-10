@@ -6,13 +6,11 @@ import (
 
 type Patient struct {
 	HosGuid  string
-	Hn       string `gorm:"primaryKey"`
+	Hn       string `json:"hn" gorm:"primaryKey"`
 	Pname    string
 	Fname    string `json:"fname" binding:"required"`
 	Lname    string
 	Birthday time.Time
-	Cid string `json:"cid"`
-	Hometel string `gorm:"home_tel"`
-
-
+	Cid      string `json:"cid"`
+	Hometel  string `gorm:"home_tel"`
 }
