@@ -38,7 +38,7 @@ func SetupDB(){
 //var Patient []model.Patient
 var IptNhsoImage []model.IptNhsoImage
 	
-	dsnhos := os.Getenv("MYSQL_DNSH")
+	dsnhos := os.Getenv("MYSQL_DNS5")
 	database,err := gorm.Open(mysql.Open(dsnhos), &gorm.Config{
 		Logger: &SqlLogger{},
 		NamingStrategy: schema.NamingStrategy{
