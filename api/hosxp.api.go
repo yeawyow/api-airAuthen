@@ -5,6 +5,7 @@ import (
 	"main/db"
 	"main/model"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -80,8 +81,12 @@ func getovst(c *gin.Context) {
 	var ovst model.Ovst
 	id := c.Param("hn")
 	//vstdate := time.Now()
+	currentTime := time.Now()
+	const (
+		YYYYMMDD = "2006-01-02"
+	)
 
-	if tx := db.GetDB().Where("hn =? AND vstdate=?", id, "2022-12-07").Find(&ovst).Error; tx != nil {
+	if tx := db.GetDB().Where("hn =? AND vstdate=?", id, currentTime.Format(YYYYMMDD)).Find(&ovst).Error; tx != nil {
 		// c.JSON(200,gin.H{"result":"","error":tx})
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
