@@ -22,6 +22,7 @@ func setupHosxpAPI(router *gin.Engine) {
 		authenAPI.GET("/getpatient/:id", getpatient)
 		authenAPI.GET("/gettest", gettest)
 		authenAPI.GET("/getovst/:hn", getovst)
+		authenAPI.GET("/getnhso", getnhso)
 
 	}
 }
@@ -31,7 +32,16 @@ func regvisit(c *gin.Context) {
 	//db.GetDB()
 	c.JSON(200, gin.H{"ok": "ok"})
 }
-
+func getnhso(c *gin.Context) {
+	var nhsotoken model.NhsoToken
+	//db.GetDB()
+	tx := db.GetDB().Last(&nhsotoken)
+	if tx.Error != nil {
+		fmt.Println(tx.Error)
+		return
+	}
+	c.JSON(200, nhsotoken)
+}
 func register(c *gin.Context) {
 
 	var json model.User

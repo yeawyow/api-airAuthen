@@ -13,4 +13,5 @@ type Patient struct {
 	Birthday time.Time
 	Cid      string `json:"cid"`
 	Hometel  string `gorm:"home_tel"`
+	Hcode    string `gorm:"hcode"`
 }
